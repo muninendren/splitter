@@ -6,6 +6,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.*;
 
+import java.util.Date;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -15,6 +17,6 @@ public class Trip {
     @Id()
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long tripId;
-
+    private Date date;
     private String name;
 }
