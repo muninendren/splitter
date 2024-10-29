@@ -6,15 +6,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("trip/")
+@RequestMapping("trip")
 public class TripController {
 
     @Autowired
     TripServiceimpl tripService;
 
-    @PostMapping("create")
+    @PostMapping("/create")
     public void createTrip(@RequestBody Trip trip){
         tripService.create(trip);
 
     }
+
+
+
+
 }
