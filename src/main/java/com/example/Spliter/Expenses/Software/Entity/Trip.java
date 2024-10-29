@@ -1,12 +1,10 @@
 package com.example.Spliter.Expenses.Software.Entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -19,4 +17,12 @@ public class Trip {
     private long tripId;
     private Date date;
     private String name;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "trip_id")  // Foreign key column in the Members table
+    private List<Members> members;
+
+//    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    @JoinColumn(name = "trip_id")
+//    private List<Members> members;
 }
