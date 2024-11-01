@@ -22,7 +22,13 @@ public class Trip {
     @JoinColumn(name = "trip_id")  // Foreign key column in the Members table
     private List<Members> members;
 
-//    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    @JoinColumn(name = "trip_id")
-//    private List<Members> members;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "trip_id")
+    private List<Groups> groups;
+
+
+
 }
+
+
+

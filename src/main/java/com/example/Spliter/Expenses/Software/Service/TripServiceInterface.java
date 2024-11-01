@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 public interface TripServiceInterface {
     public void create(Trip trip);
 
+    String addMemberToTrip(int mid, long tid);
 }
