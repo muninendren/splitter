@@ -12,11 +12,13 @@ import java.util.List;
 @Entity
 public class Trip {
 
-    @Id()
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long tripId;
     private Date date;
     private String name;
+    private int totallySpent;
+    private int count=0;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "trip_id")  // Foreign key column in the Members table
@@ -27,7 +29,9 @@ public class Trip {
     private List<Groups> groups;
 
 
-
+    public void addGroup(Groups group) {
+        groups.add(group);
+    }
 }
 
 

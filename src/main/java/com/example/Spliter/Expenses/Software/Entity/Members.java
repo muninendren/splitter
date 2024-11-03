@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
+import java.util.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -17,6 +17,10 @@ public class Members {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String name;
+    private int spent;
+    private int haveToPay;
+
+
 
 }
 
