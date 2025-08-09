@@ -29,4 +29,6 @@ public class GroupsController {
     public String addSpentAmount(@PathVariable("gid") long gid,int money){
         return groupServiceInterface.addSpentMoney(gid,money);
     }
+
+
 }

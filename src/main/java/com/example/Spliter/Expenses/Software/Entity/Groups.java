@@ -6,7 +6,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
 @Data
 @AllArgsConstructor
@@ -16,22 +19,38 @@ import java.util.Set;
 public class Groups {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    @Column(length = 36, updatable = false, nullable = false)
+    private String id;
+
+    @Column(name = "group_name", nullable = false)
     private String name;
-    private int budget;
-    private int count=0;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name="Groups_people",
-            joinColumns = {@JoinColumn(name="Customer_id_fk")},
-            inverseJoinColumns={@JoinColumn(name="Member_id_fk")}
+
+    @ManyToMany
+    @JoinTable(
+            name = "group_members",
+            joinColumns = @JoinColumn(name = "group_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id")
     )
-    Set<Members> membersSet;
+    private Set<Members> members = new HashSet<>();
 
-    public void addMember(Members mem){
-        membersSet.add(mem);
+    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL)
+    private List<PaymentToSend> paymentsToSend;
+
+
+    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL)
+    private List<PaymentToReceive> paymentsToReceive;
+
+    @ManyToMany(mappedBy = "groups")
+    private Set<Event> events = new HashSet<>();
+
+    @PrePersist
+    public void generateId() {
+        if (this.id == null) {
+            this.id = UUID.randomUUID().toString();
+        }
     }
+
 
 
 }

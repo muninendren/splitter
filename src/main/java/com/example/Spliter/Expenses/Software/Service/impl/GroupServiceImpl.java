@@ -1,8 +1,6 @@
 package com.example.Spliter.Expenses.Software.Service.impl;
 
 import com.example.Spliter.Expenses.Software.Entity.Groups;
-import com.example.Spliter.Expenses.Software.Entity.Members;
-import com.example.Spliter.Expenses.Software.Entity.Trip;
 import com.example.Spliter.Expenses.Software.Repository.GroupRepository;
 import com.example.Spliter.Expenses.Software.Repository.MembersRepository;
 import com.example.Spliter.Expenses.Software.Repository.TripRepository;
@@ -21,41 +19,18 @@ public class GroupServiceImpl implements GroupServiceInterface {
     TripRepository tripRepository;
     @Override
     public String addGroup(Groups groups,long Tid) {
-        try{
-            Trip trip=tripRepository.findById(Tid).get();
-            groups.setBudget(0);
-            trip.addGroup(groups);
-//            groupRepository.save(groups);/
-            tripRepository.save(trip);
-            return "sucesss";
-        } catch (Exception e) {
-            return e.getMessage();
-        }
+return null;
     }
 
     @Override
     public String addMemToGroup(int mid, long gid) {
 
-        try{
-            Groups group=groupRepository.findById(gid).get();
-            Members member=membersRepository.findById(mid).get();
-            group.addMember(member);
-            groupRepository.save(group);
-            return "Success";
-        } catch (Exception e) {
-            return e.getMessage();
-        }
+return null;
     }
 
     @Override
     public String addSpentMoney(long gid, int money) {
-        try {
-            Groups group=groupRepository.findById(gid).get();
-            group.setBudget(+money);
+        return null;
 
-            return "";
-        } catch (Exception e) {
-            return e.getMessage();
-        }
     }
 }

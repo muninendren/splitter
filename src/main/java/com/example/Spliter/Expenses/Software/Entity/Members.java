@@ -5,7 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.UUID;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -14,13 +17,30 @@ import java.util.*;
 public class Members {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    @Column(length = 36, updatable = false, nullable = false)
+    private String id;
+
+    @Column(name = "user_name", nullable = false)
     private String name;
-    private int spent;
-    private int haveToPay;
 
+    @OneToMany(mappedBy = "sender", cascade = CascadeType.ALL)
+    private List<PaymentToSend> paymentsToSend;
 
+    @OneToMany(mappedBy = "receiver", cascade = CascadeType.ALL)
+    private List<PaymentToReceive> paymentsToReceive;
+
+    @ManyToMany(mappedBy = "members")
+    private Set<Groups> group=new HashSet<>();
+
+    @ManyToMany(mappedBy = "members")
+    private Set<Event> Events = new HashSet<>();
+
+    @PrePersist
+    public void generateId() {
+        if (this.id == null) {
+            this.id = UUID.randomUUID().toString();
+        }
+    }
 
 }
 
