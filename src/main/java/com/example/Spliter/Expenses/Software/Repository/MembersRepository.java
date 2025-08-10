@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface MembersRepository extends JpaRepository<Members,Integer> {
+public interface MembersRepository extends JpaRepository<Members,String> {
 
 //    @Query("Select m from Members m where m.trip.trip_id= :tripId")@Param("tripId")
 //    public List<Members> findAllByTrip_TripId(Integer id);
