@@ -3,6 +3,7 @@ package com.example.Spliter.Expenses.Software.Entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -16,6 +17,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @Entity
 @Table(name = "group_table")
+@Builder
 public class Groups {
 
     @Id
@@ -26,7 +28,7 @@ public class Groups {
     private String name;
 
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "group_members",
             joinColumns = @JoinColumn(name = "group_id"),

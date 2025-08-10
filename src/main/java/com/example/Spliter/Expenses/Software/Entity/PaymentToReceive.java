@@ -1,8 +1,9 @@
 package com.example.Spliter.Expenses.Software.Entity;
 
-import com.example.Spliter.Expenses.Software.PaymentStatus;
+import com.example.Spliter.Expenses.Software.Enums.PaymentStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -12,6 +13,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @Data
 @Entity
+@Builder
 public class PaymentToReceive {
 
     @Id

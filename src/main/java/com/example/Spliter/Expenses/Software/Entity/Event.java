@@ -3,12 +3,14 @@ package com.example.Spliter.Expenses.Software.Entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.util.*;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Builder
 public class Event {
 
     @Id
@@ -16,7 +18,7 @@ public class Event {
     private String id;
 
     @Column(name = "date", nullable = false)
-    private Date date;
+    private LocalDate date;
 
     @Column(name = "event_name")
     private String name;
@@ -24,7 +26,11 @@ public class Event {
     @Column(name = "total_amount")
     private int totalAmount;
 
-    @ManyToMany
+    @Lob
+    @Column(name = "evnt_description")
+    private String description;
+
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "event_members",
             joinColumns = @JoinColumn(name = "event_id"),
@@ -32,7 +38,7 @@ public class Event {
     )
     private Set<Members> members = new HashSet<>();
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "event_groups",
             joinColumns = @JoinColumn(name = "event_id"),

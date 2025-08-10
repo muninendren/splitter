@@ -2,6 +2,7 @@ package com.example.Spliter.Expenses.Software.Entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -14,6 +15,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @Data
 @Entity
+@Builder
 public class Members {
 
     @Id
@@ -22,6 +24,9 @@ public class Members {
 
     @Column(name = "user_name", nullable = false)
     private String name;
+
+    @Column(name = "mobile_number", nullable = false, unique = true, length = 15)
+    private String mobileNumber;
 
     @OneToMany(mappedBy = "sender", cascade = CascadeType.ALL)
     private List<PaymentToSend> paymentsToSend;
